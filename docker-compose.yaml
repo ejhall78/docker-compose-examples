@@ -40,3 +40,8 @@ services:
       - "3000:3000"
     environment:
       - REACT_APP_API_BASE_URL=http://backend:8000  # Uses service name for inter-container communication
+
+# Declare named volumes for data persistence
+volumes:
+  db_data:
+  backend_data:
