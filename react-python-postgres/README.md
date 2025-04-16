@@ -48,9 +48,9 @@ This README is an example of how to deploy it given it's completion.
 
 To stop all the services, run the following command:
 
-
+```
 docker compose down
-
+```
 
 This will stop and remove the containers. However, the data in the named volumes (e.g., `db_data`, `backend_data`) will persist.
 
@@ -65,5 +65,3 @@ This will stop and remove the containers. However, the data in the named volumes
 * **Network:** The services can communicate with each other using their service names (e.g., `db`, `backend`, `frontend`) as hostnames. Docker Compose sets up a network that allows this communication.
 
 * **Environment Variables:** The `docker-compose.yml` file uses environment variables (e.g., `POSTGRES_USER`, `POSTGRES_PASSWORD`, `REACT_APP_API_BASE_URL`). Make sure to set these appropriately, especially the database credentials. For production environments, consider using more secure methods for managing secrets.
-
-* **Dockerfile:** This assumes you have Dockerfiles for your `backend` and `frontend` applications in directories named `backend` and `frontend`, respectively. The Dockerfiles define how to build the Docker images for those services.
