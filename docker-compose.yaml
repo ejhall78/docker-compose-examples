@@ -27,3 +27,16 @@ services:
     environment:
       - DATABASE_URL=postgresql+asyncpg://pguser:pgpassword@db/pgdb # TODO: pass these in securely
       - HOST=0.0.0.0 # Needed for FastAPI. Makes the container accessible from other containers
+
+  # React Frontend Service
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_BASE_URL=http://backend:8000  # Uses service name for inter-container communication
