@@ -6,11 +6,17 @@
 
 FROM python:3.9
 
-WORKDIR /usr/src/app
 
-COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
+WORKDIR /code
 
-COPY . .
 
-CMD [ "python", "./main.py" ]
+COPY ./requirements.txt /code/requirements.txt
+
+
+RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+
+
+COPY . /code
+
+
+CMD ["fastapi", "run", "./main.py", "--port", "8000"]
