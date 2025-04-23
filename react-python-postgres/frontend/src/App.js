@@ -2,25 +2,29 @@ import './App.css';
 import { useState, useEffect } from "react";
 
 function App() {
+  var host = "http://localhost:8000"
+  if (process.env.REACT_APP_API_BASE_URL) {
+    host = process.env.REACT_APP_API_BASE_URL
+  }
 
   const [clicks, setClicks] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:8000/getclicks')
+    fetch(`${host}/getclicks`)
       .then(response => response.json())
       .then(json => setClicks(json))
       .catch(error => console.error(error));
   }, []);
 
   const incrementClicks = () => {
-    fetch('http://localhost:8000/incrementclicks')
+    fetch(`${host}/incrementclicks`)
       .then(response => response.json())
       .then(json => setClicks(json))
       .catch(error => console.error(error));
   }
 
   const resetClicks = () => {
-    fetch('http://localhost:8000/resetclicks')
+    fetch(`${host}/resetclicks`)
       .then(response => response.json())
       .then(json => setClicks(json))
       .catch(error => console.error(error));
