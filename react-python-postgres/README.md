@@ -52,13 +52,11 @@ To stop all the services, run the following command:
 docker compose down
 ```
 
-This will stop and remove the containers. However, the data in the named volumes (e.g., `db_data`, `backend_data`) will persist.
+This will stop and remove the containers. However, the data in the named volumes (e.g., `db_data`) will persist.
 
 **Data Persistence:**
 
 * The data for the Postgres database is stored in the `db_data` volume. This ensures that your database data is not lost when the containers are stopped or removed.
-
-* The `backend_data` volume is available for the backend service to store persistent data. If your backend application doesn't require persistent data storage, you can remove the `backend_data` volume from the `docker-compose.yml` file.
 
 **Important Notes:**
 
