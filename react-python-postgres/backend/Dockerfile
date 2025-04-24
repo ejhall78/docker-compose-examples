@@ -4,7 +4,7 @@
 # Example FastAPI Python Dockerfile taken from
 # https://fastapi.tiangolo.com/deployment/docker/#dockerfile
 
-FROM python:3.9
+FROM python:3.12
 
 
 WORKDIR /code
