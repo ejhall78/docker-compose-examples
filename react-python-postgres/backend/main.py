@@ -21,7 +21,7 @@ class ClickCounter(SQLModel, table=True):
     name: str
     clicks: int
 
-db_url = "postgresql://pguser:pgpassword@localhost:5432/clicksdb"
+db_url = "postgresql://pguser:pgpassword@db:5432/clicksdb"
 engine = create_engine(db_url, echo=True)
 
 @app.on_event("startup")

@@ -1,11 +1,5 @@
 ## Deployment Instructions
 
-⚠️**WARNING** 
-
-**The code in this project is not _yet_ functional so the below instructions won't work.**
-
-This README is an example of how to deploy it given it's completion.
-
 **Prerequisites:**
 
 * **Docker:** Ensure you have Docker installed on your system. You can download it from <https://www.docker.com/get-started>.
@@ -27,6 +21,15 @@ This README is an example of how to deploy it given it's completion.
     ```
 
     * `-d` flag: Runs the containers in detached mode (in the background). If you don't use the `-d` flag, you'll see the logs in your terminal, and you'll need to keep the terminal window open.
+    * **⚠️Note:** If you have PostgreSQL installed on your machine already, you may see and error relating to the port 5432 being already in use. You can find which process is using this port and kill it with the following commands. You will then need to run the above command again.
+
+    ```
+    sudo lsof -i :5432
+    ```
+
+    ```
+    sudo kill PID
+    ```
 
 3.  **Verify the Services:** After the containers have started, you can check their status using the following command:
 
@@ -62,4 +65,4 @@ This will stop and remove the containers. However, the data in the named volumes
 
 * **Network:** The services can communicate with each other using their service names (e.g., `db`, `backend`, `frontend`) as hostnames. Docker Compose sets up a network that allows this communication.
 
-* **Environment Variables:** The `docker-compose.yml` file uses environment variables (e.g., `POSTGRES_USER`, `POSTGRES_PASSWORD`, `REACT_APP_API_BASE_URL`). Make sure to set these appropriately, especially the database credentials. For production environments, consider using more secure methods for managing secrets.
+* **Environment Variables:** The code in this project is not production ready and there are some hard coded variables that would be better handles as environment variables. An improvement to be made would be to store the important data secretly and pass them in via environment variables. For example `POSTGRES_USER`, `POSTGRES_PASSWORD`, `REACT_APP_API_BASE_URL`, and the Database URL.

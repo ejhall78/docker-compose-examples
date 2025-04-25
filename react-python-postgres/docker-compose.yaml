@@ -23,7 +23,7 @@ services:
     ports:
       - "8000:8000"
     # environment:
-    #   - DATABASE_URL=postgresql://pguser:pgpassword@localhost:5432/clicksdb # TODO: pass these in securely
+    #   - DATABASE_URL=postgresql://pguser:pgpassword@db:5432/clicksdb # TODO: pass these in securely
 
   # React Frontend Service
   frontend:
