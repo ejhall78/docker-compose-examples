@@ -1,14 +1,14 @@
 services:
   # PostgreSQL database
   db:
-    image: postgres:14-alpine
+    image: postgres
     restart: always
     volumes:
       - db_data:/var/lib/postgresql/data  # Persist data in a named volume
     environment: # TODO: store these somewhere secure and pass in programmatically
       - POSTGRES_USER=pguser
       - POSTGRES_PASSWORD=pgpassword
-      - POSTGRES_DB=pgdb
+      - POSTGRES_DB=clicksdb
     ports:
       - "5432:5432" # Host Port:Container Port
 
@@ -18,15 +18,12 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     restart: always
-    volumes:
-      - backend_data:/app/data # Named volume for backend data persistence
     depends_on:
       - db
     ports:
       - "8000:8000"
-    environment:
-      - DATABASE_URL=postgresql+asyncpg://pguser:pgpassword@db/pgdb # TODO: pass these in securely
-      - HOST=0.0.0.0 # Needed for FastAPI. Makes the container accessible from other containers
+    # environment:
+    #   - DATABASE_URL=postgresql://pguser:pgpassword@db:5432/clicksdb # TODO: pass these in securely
 
   # React Frontend Service
   frontend:
@@ -38,10 +35,7 @@ services:
       - backend
     ports:
       - "3000:3000"
-    environment:
-      - REACT_APP_API_BASE_URL=http://backend:8000  # Uses service name for inter-container communication
 
 # Declare named volumes for data persistence
 volumes:
   db_data:
-  backend_data:
